@@ -36,6 +36,8 @@
 #include <memory.h>
 #include <limits.h>
 
+#include "c_program_timing.h"
+
 static clock_t start_precomputation;
 static clock_t end_precomuputation;
 static clock_t start_branch_and_bound;
@@ -306,6 +308,10 @@ nobs:
 void expand(long long *set,long long set_size,long long upper)
 {
     ++branch_count;
+    if (branch_count % 100000 == 0)
+        check_for_timeout();
+    if (is_timeout_flag_set())
+        return;
 
     long long i=set_size;
     while(i--)

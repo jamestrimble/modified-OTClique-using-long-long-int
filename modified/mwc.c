@@ -39,6 +39,26 @@ int main(int argc, char *argv[])
     weighted_graph *input_graph;
     switch (argc)
     {
+        case 4 :
+            // Calling the program with three command-line arguments enables
+            // the timeout feature.  The parameters are filename, limit,
+            // and time limit (in seconds).  If limit is -1, then the default
+            // values from the OTClique paper are used.
+            input_graph=read_graph(argv[1]);
+            limit=atoi(argv[2]);
+            if ( limit == -1 )
+            {
+                if( input_graph->n <=1500 )
+                {
+                    limit=25;
+                }
+                else
+                {
+                    limit=20;
+                }
+            }
+            set_time_limit_sec(atoi(argv[3]));
+            break;
         case 3 :
             input_graph=read_graph(argv[1]);
             limit=atoi(argv[2]);
@@ -70,6 +90,9 @@ int main(int argc, char *argv[])
         printf(" %lld", maximum_weight_clique->set[i]+1);
     }
     printf(" ]\n");
+
+    if (is_timeout_flag_set())
+        fprintf(stdout, "TIMEOUT\n");
 
     printf("%lld %lld %ld\n", maximum_weight_clique->size,
                                   maximum_weight_clique->weight,
