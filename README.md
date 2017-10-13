@@ -8,10 +8,10 @@ than the original program.  Note that the change of data types was made using
 a simple text substitution; see the `scripts` directory.
 
 The modified program also allows a time limit in seconds to be set using a
-third command-line argument.  To use the default value of the l parameter along
+third command-line argument.  To use the default value of the _l_ parameter along
 with a timeout, use -1 for the second command-line argument.
 
 This code is similar, but not identical, to the code used for the CP 2017
 paper *On Maximum Weight Clique Algorithms, and How They Are Evaluated*.  The
-used for that paper was based on an earlier version of OTClique provided
+code used for that paper was based on an earlier version of OTClique provided
 by the program's authors.
