@@ -7,10 +7,10 @@ LDFLAGS =
 .PHONY : all
 all: otclique otclique_mwvc
 
-otclique : mwc.o otclique.o optimal_table.o vertex_sequence_and_partition.o clique.o weighted_graph.o
+otclique : mwc.o otclique.o optimal_table.o vertex_sequence_and_partition.o clique.o weighted_graph.o c_program_timing.o
 	${CC} ${CFLAGS} -o $@ $^ ${LDFLAGS}
 
-otclique_mwvc : mwvc.o otclique.o optimal_table.o vertex_sequence_and_partition.o clique.o weighted_graph.o
+otclique_mwvc : mwvc.o otclique.o optimal_table.o vertex_sequence_and_partition.o clique.o weighted_graph.o c_program_timing.o
 	${CC} ${CFLAGS} -o $@ $^ ${LDFLAGS}
 
 .PHONY : clean

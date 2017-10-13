@@ -31,6 +31,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "c_program_timing.h"
+
 int main(int argc, char *argv[])
 {
     long long limit;
@@ -57,7 +59,9 @@ int main(int argc, char *argv[])
             return 1;
     }
 
+    set_start_time();
     clique *maximum_weight_clique=otclique(input_graph,limit);
+    long elapsed = get_elapsed_time_msec();
 
     printf("Maximum weight = %lld\n", maximum_weight_clique->weight);
     printf("The maximum weight clique has %lld vertices,\n [",maximum_weight_clique->size);
@@ -66,6 +70,10 @@ int main(int argc, char *argv[])
         printf(" %lld", maximum_weight_clique->set[i]+1);
     }
     printf(" ]\n");
+
+    printf("%lld %lld %ld\n", maximum_weight_clique->size,
+                                  maximum_weight_clique->weight,
+                                  elapsed);
 
     assert(is_clique(maximum_weight_clique,input_graph));
 
